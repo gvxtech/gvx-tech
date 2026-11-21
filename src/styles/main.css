@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DMSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DMSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DMSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Mono';
+  src: url('/assets/fonts/DMMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-display: 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F7FA;
+  --text-primary: #101114;
+  --text-secondary: #777B84;
+  --accent: #1677FF;
+  --accent-hover: #0958D9;
+  --border-subtle: #E8EBF0;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom cursor hiding on fine-pointer desktop while preserving native text I-beam */
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role="button"] {
+  cursor: none !important;
+}
+
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select {
+  cursor: text !important;
+}
+
+/* Interactive cursor-tracking spotlight sheen on cards */
+.spotlight-card {
+  position: relative;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+  background: radial-gradient(
+    360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(22, 119, 255, 0.08),
+    transparent 65%
+  );
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Smooth page enter & staggered child choreography */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes staggerReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger-item {
+  animation: staggerReveal 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Brand gradient accent matching the GVX logo palette */
+.gvx-gradient-text {
+  background: linear-gradient(110deg, #041436 0%, #1677FF 52%, #00B8FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Minimal ambient background animations (compositor-only transform & opacity) */
+@keyframes ambientDriftA {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-48px, 36px, 0) scale(1.06);
+  }
+}
+
+@keyframes ambientDriftB {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(52px, -34px, 0) scale(1.05);
+  }
+}
+
+@keyframes ambientContourFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 16px, 0);
+  }
+}
+
+@keyframes ambientBeamH {
+  0% {
+    transform: translate3d(-200px, 0, 0);
+    opacity: 0;
+  }
+  15%, 85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(110vw, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes ambientBeamV {
+  0% {
+    transform: translate3d(0, -180px, 0);
+    opacity: 0;
+  }
+  15%, 85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 105vh, 0);
+    opacity: 0;
+  }
+}
+
+.ambient-drift-a {
+  animation: ambientDriftA 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ambient-drift-b {
+  animation: ambientDriftB 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ambient-contour-float {
+  animation: ambientContourFloat 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ambient-beam-h {
+  animation: ambientBeamH 15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.ambient-beam-v {
+  animation: ambientBeamV 19s cubic-bezier(0.4, 0, 0.2, 1) 4s infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-enter,
+  .stagger-item,
+  .ambient-drift-a,
+  .ambient-drift-b,
+  .ambient-contour-float,
+  .ambient-beam-h,
+  .ambient-beam-v {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
