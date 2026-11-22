@@ -11,6 +11,7 @@ import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
 import FloatingContact from './components/FloatingContact';
 import { Footer } from './components/Footer';
+import FloatingTechIcons from './components/FloatingTechIcons';
 
 
 const VALID_PAGES = new Set<PageId>(NAV_PAGES.map((p) => p.id));
@@ -124,6 +125,8 @@ export default function App() {
             onClearPrefill={() => setPrefillSubject(null)}
           />
         )}
+
+        
       </main>
 
       <Footer onNavigate={(page) => navigateTo(page)} />

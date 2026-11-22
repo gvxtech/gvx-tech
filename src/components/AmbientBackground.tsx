@@ -1,41 +1,55 @@
+const techIcons = [
+  { name: 'React', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', x: '8%', y: '12%', size: 45, delay: '0s', duration: '18s' },
+  { name: 'Laravel', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg', x: '82%', y: '15%', size: 48, delay: '2s', duration: '22s' },
+  { name: 'PHP', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg', x: '22%', y: '35%', size: 42, delay: '4s', duration: '20s' },
+  { name: 'HTML5', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', x: '70%', y: '38%', size: 44, delay: '1s', duration: '19s' },
+  { name: 'CSS3', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', x: '45%', y: '18%', size: 42, delay: '3s', duration: '21s' },
+  { name: 'Bootstrap', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg', x: '90%', y: '55%', size: 46, delay: '5s', duration: '24s' },
+  { name: 'Tailwind', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', x: '15%', y: '70%', size: 45, delay: '2s', duration: '17s' },
+  { name: 'JavaScript', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', x: '60%', y: '75%', size: 43, delay: '6s', duration: '23s' },
+  { name: 'MySQL', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', x: '35%', y: '85%', size: 45, delay: '1s', duration: '20s' },
+  { name: 'React Native', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', x: '50%', y: '55%', size: 40, delay: '4s', duration: '22s' },
+  { name: 'PostgreSQL', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', x: '5%', y: '48%', size: 43, delay: '3s', duration: '19s' },
+  { name: 'Angular', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg', x: '78%', y: '85%', size: 42, delay: '7s', duration: '25s' },
+  { name: 'Node.js', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', x: '30%', y: '10%', size: 46, delay: '2s', duration: '18s' },
+  { name: 'MongoDB', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', x: '92%', y: '30%', size: 44, delay: '5s', duration: '21s' },
+  { name: 'SQL', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', x: '40%', y: '45%', size: 40, delay: '6s', duration: '20s' },
+  { name: 'Flutter', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg', x: '65%', y: '12%', size: 45, delay: '3s', duration: '24s' },
+];
+
 export function AmbientBackground() {
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-white select-none"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-white dark:bg-black select-none transition-colors duration-300"
       aria-hidden="true"
     >
-      {/* Subtle architectural hairline grid with radial edge fade on pure white */}
-      <div
-        className="absolute inset-0 opacity-[0.45]"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, rgba(16, 17, 20, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 17, 20, 0.03) 1px, transparent 1px)',
-          backgroundSize: '72px 72px',
-          maskImage: 'radial-gradient(ellipse 80% 70% at 50% 35%, #000 35%, transparent 100%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse 80% 70% at 50% 35%, #000 35%, transparent 100%)',
-        }}
-      />
-
-      {/* Whisper-quiet slowly undulating architectural contour hairlines */}
-      <svg
-        className="ambient-contour-float absolute inset-x-0 top-0 h-[820px] w-full opacity-[0.045]"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 1440 900"
-      >
-        <g fill="none" stroke="#101114" strokeWidth="1">
-          <path d="M-120 720 C 240 580, 520 790, 920 620 C 1200 500, 1380 560, 1560 440" />
-          <path d="M-120 640 C 260 490, 540 700, 930 530 C 1210 410, 1390 470, 1560 350" />
-          <path d="M-120 560 C 280 400, 560 610, 940 440 C 1220 320, 1400 380, 1560 260" />
-          <path d="M-120 480 C 300 310, 580 520, 950 350 C 1230 230, 1410 290, 1560 170" />
-          <path d="M-120 400 C 320 220, 600 430, 960 260 C 1240 140, 1420 200, 1560 80" />
-        </g>
-      </svg>
-
-      {/* Minimal gliding hairline streaks along grid tracks */}
-      <div className="ambient-beam-h absolute left-0 top-[216px] h-[1px] w-48 bg-gradient-to-r from-transparent via-[#101114]/15 to-transparent" />
-      <div className="ambient-beam-v absolute top-0 left-[288px] h-44 w-[1px] bg-gradient-to-b from-transparent via-[#101114]/15 to-transparent" />
+      {/* Automatically Floating Technology Logos */}
+      {techIcons.map((tech, index) => (
+        <div
+          key={`${tech.name}-${index}`}
+          className="tech-float absolute"
+          style={{
+            left: tech.x,
+            top: tech.y,
+            animationDelay: tech.delay,
+            animationDuration: tech.duration,
+          }}
+        >
+          <div className="flex items-center justify-center rounded-2xl border border-[#E8EBF0]/60 dark:border-[#262626]/70 bg-white/50 dark:bg-[#111111]/50 backdrop-blur-sm p-3 shadow-sm">
+            <img
+              src={tech.src}
+              alt=""
+              width={tech.size}
+              height={tech.size}
+              className="object-contain opacity-20 dark:opacity-30"
+              style={{
+                width: `${tech.size}px`,
+                height: `${tech.size}px`,
+              }}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: 'DM Sans';
   src: url('/assets/fonts/DMSans-Regular.ttf') format('truetype');
@@ -44,6 +46,16 @@
   --accent: #1677FF;
   --accent-hover: #0958D9;
   --border-subtle: #E8EBF0;
+}
+/* DARK MODE VARIABLES */
+.dark {
+  --bg-primary: #050810;
+  --bg-secondary: #0B1220;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A8B7;
+  --accent: #1677FF;
+  --accent-hover: #0958D9;
+  --border-subtle: #1E293B;
 }
 
 @layer base {
@@ -258,3 +270,302 @@ html.has-custom-cursor select {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* ============================================
+   GVX TECH LIGHT & DARK BACKGROUND
+============================================ */
+
+/* LIGHT MODE */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #ffffff;
+  transition: background 0.5s ease;
+}
+
+.dark .ambient-background {
+  background-color: #050810;
+}
+
+.ambient-grid {
+  background-image:
+    linear-gradient(to right, rgba(16,17,20,0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16,17,20,0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.tech-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  transition: background 0.5s ease;
+}
+
+.tech-glow-one {
+  width: 500px;
+  height: 500px;
+  top: -200px;
+  right: -100px;
+  background: rgba(60, 120, 255, 0.045);
+  animation: techFloat1 18s ease-in-out infinite alternate;
+}
+
+.tech-glow-two {
+  width: 450px;
+  height: 450px;
+  bottom: -180px;
+  left: -100px;
+  background: rgba(100, 80, 255, 0.045);
+  animation: techFloat2 22s ease-in-out infinite alternate;
+}
+
+.tech-glow-three {
+  width: 350px;
+  height: 350px;
+  top: 40%;
+  left: 50%;
+  background: rgba(0, 160, 255, 0.035);
+  animation: techFloat3 20s ease-in-out infinite alternate;
+}
+
+.floating-code {
+  position: absolute;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(40, 65, 110, 0.15);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: color 0.5s ease;
+}
+
+.background-scanner {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(80, 130, 255, 0.025),
+    rgba(80, 130, 255, 0.04),
+    transparent
+  );
+  animation: scannerMove 18s linear infinite;
+}
+
+/* ============================================
+   DARK MODE
+============================================ */
+
+.dark .ambient-background {
+  background: #050810;
+}
+
+.dark .ambient-grid {
+  background-image:
+    linear-gradient(to right, rgba(110,160,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(110,160,255,0.06) 1px, transparent 1px);
+}
+
+.dark .tech-glow-one {
+  background: rgba(0, 130, 255, 0.12);
+}
+
+.dark .tech-glow-two {
+  background: rgba(90, 40, 255, 0.10);
+}
+
+.dark .tech-glow-three {
+  background: rgba(0, 200, 255, 0.08);
+}
+
+.dark .floating-code {
+  color: rgba(100, 200, 255, 0.25);
+}
+
+.dark .background-scanner {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 180, 255, 0.02),
+    rgba(0, 180, 255, 0.07),
+    transparent
+  );
+}
+
+/* ============================================
+   ANIMATIONS
+============================================ */
+
+@keyframes techFloat1 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-80px, 60px);
+  }
+}
+
+@keyframes techFloat2 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(70px, -50px);
+  }
+}
+
+@keyframes techFloat3 {
+  from {
+    transform: translate(-50px, 20px);
+  }
+  to {
+    transform: translate(70px, -60px);
+  }
+}
+
+@keyframes scannerMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(200%);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 768px) {
+  .floating-code {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .tech-glow {
+    filter: blur(90px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-glow,
+  .floating-code,
+  .background-scanner {
+    animation: none !important;
+  }
+}
+
+
+/* Automatic Technology Logo Scrolling */
+
+.tech-marquee {
+  animation: tech-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+.tech-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tech-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tech-marquee {
+    animation-duration: 25s;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee {
+    animation: none;
+  }
+}
+
+/* Automatic Floating Technology Background */
+
+.tech-float {
+  animation: tech-floating 8s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes tech-floating {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+  }
+
+  25% {
+    transform: translate3d(30px, -45px, 0) rotate(8deg);
+  }
+
+  50% {
+    transform: translate3d(-25px, 35px, 0) rotate(-6deg);
+  }
+
+  75% {
+    transform: translate3d(40px, 20px, 0) rotate(10deg);
+  }
+
+  100% {
+    transform: translate3d(-35px, -40px, 0) rotate(-8deg);
+  }
+}
+
+/* Mobile adjustment */
+
+@media (max-width: 768px) {
+  .tech-float {
+    animation-duration: 6s;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-float {
+    animation: none;
+  }
+}
+
+/* =========================================
+   GVX TECH DARK MODE BACKGROUND IMAGE
+========================================= */
+
+.dark .ambient-background {
+  background-image:
+    linear-gradient(rgba(3, 5, 12, 0.55), rgba(3, 5, 12, 0.72)),
+    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=90');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Keep floating icons visible */
+.dark .tech-float {
+  opacity: 1;
+}
+
+/* Dark mode technology cards */
+.dark .tech-float > div {
+  background: rgba(10, 15, 30, 0.45);
+  border-color: rgba(100, 150, 255, 0.15);
+  backdrop-filter: blur(8px);
+}
+
