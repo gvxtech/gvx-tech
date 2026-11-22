@@ -47,7 +47,7 @@ export function Footer({ onNavigate }: FooterProps) {
         <div className="pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <p className="text-xs text-[#777B84]">© 2026 GVX TECH. All rights reserved.</p>
 
-          <div className="flex items-center gap-4 text-[#777B84]">
+         <div className="flex items-center gap-2 text-[#777B84]">
 
   {/* LinkedIn */}
   <a
@@ -55,7 +55,7 @@ export function Footer({ onNavigate }: FooterProps) {
     target="_blank"
     rel="noreferrer"
     aria-label="GVX TECH on LinkedIn"
-    className="p-2 rounded-lg hover:text-[#1677FF] hover:bg-[#F5F7FA] transition-colors"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#0A66C2] hover:bg-[#E8F4FF] hover:shadow-md"
   >
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -70,7 +70,7 @@ export function Footer({ onNavigate }: FooterProps) {
     target="_blank"
     rel="noreferrer"
     aria-label="GVX TECH on X"
-    className="p-2 rounded-lg hover:text-[#1677FF] hover:bg-[#F5F7FA] transition-colors"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-black hover:bg-gray-100 hover:shadow-md"
   >
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 4l16 16" />
@@ -78,27 +78,13 @@ export function Footer({ onNavigate }: FooterProps) {
     </svg>
   </a>
 
-  {/* GitHub */}
-  {/* <a
-    href="https://github.com"
-    target="_blank"
-    rel="noreferrer"
-    aria-label="GVX TECH on GitHub"
-    className="p-2 rounded-lg hover:text-[#1677FF] hover:bg-[#F5F7FA] transition-colors"
-  >
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
-    </svg>
-  </a> */}
-
   {/* Facebook */}
   <a
     href="https://www.facebook.com"
     target="_blank"
     rel="noreferrer"
     aria-label="GVX TECH on Facebook"
-    className="p-2 rounded-lg hover:text-[#1677FF] hover:bg-[#F5F7FA] transition-colors"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#1877F2] hover:bg-[#EAF3FF] hover:shadow-md"
   >
     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
       <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H8v3h2.1v8h3.4z" />
@@ -111,7 +97,7 @@ export function Footer({ onNavigate }: FooterProps) {
     target="_blank"
     rel="noreferrer"
     aria-label="GVX TECH on Instagram"
-    className="p-2 rounded-lg hover:text-[#1677FF] hover:bg-[#F5F7FA] transition-colors"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#E1306C] hover:bg-[#FFF0F5] hover:shadow-md"
   >
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -126,7 +112,7 @@ export function Footer({ onNavigate }: FooterProps) {
     target="_blank"
     rel="noreferrer"
     aria-label="GVX TECH on YouTube"
-    className="p-2 rounded-lg hover:text-[#1677FF] hover:bg-[#F5F7FA] transition-colors"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#FF0000] hover:bg-[#FFF0F0] hover:shadow-md"
   >
     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
       <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12a31 31 0 0 0-.5-4.8zM9.5 15.5v-7l6 3.5-6 3.5z" />

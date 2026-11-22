@@ -6,10 +6,12 @@ import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
 import { IndustriesSection } from './components/IndustriesSection';
-import { ProjectsSection } from './components/ProjectsSection';
+// import { ProjectsSection } from './components/ProjectsSection';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
+import FloatingContact from './components/FloatingContact';
 import { Footer } from './components/Footer';
+
 
 const VALID_PAGES = new Set<PageId>(NAV_PAGES.map((p) => p.id));
 
@@ -110,9 +112,9 @@ export default function App() {
         {activePage === 'solutions' && (
           <IndustriesSection onExploreContact={(sector) => navigateTo('contact', sector)} />
         )}
-        {activePage === 'projects' && (
+        {/* {activePage === 'projects' && (
           <ProjectsSection onInquireProject={(projectTitle) => navigateTo('contact', projectTitle)} />
-        )}
+        )} */}
         {activePage === 'about' && (
           <AboutSection onStartProject={() => navigateTo('contact')} />
         )}
@@ -125,6 +127,7 @@ export default function App() {
       </main>
 
       <Footer onNavigate={(page) => navigateTo(page)} />
+        <FloatingContact />
     </div>
   );
 }

@@ -17,8 +17,10 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
     const onScroll = () => {
       setScrolled(window.scrollY > 16);
     };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -36,6 +38,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
       }`}
     >
       <div className="mx-auto flex h-full max-w-[1240px] items-center justify-between gap-8 px-6 lg:px-10">
+
         {/* Zone 1: Brand Wordmark */}
         <a
           href="#home"
@@ -49,10 +52,14 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           <LogoMark />
         </a>
 
-        {/* Zone 2: Clean Single-Line Navigation Links */}
-        <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-7">
+        {/* Zone 2: Navigation Links */}
+        <nav
+          aria-label="Primary navigation"
+          className="hidden md:flex items-center gap-7"
+        >
           {NAV_PAGES.map((item) => {
             const isActive = activePage === item.id;
+
             return (
               <a
                 key={item.id}
@@ -74,8 +81,10 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           })}
         </nav>
 
-        {/* Zone 3: Primary CTA + Mobile Toggle */}
+        {/* Zone 3: CTA + Social Icons + Mobile Toggle */}
         <div className="flex items-center gap-3 shrink-0">
+
+          {/* Let's Talk */}
           <MagneticButton
             onClick={() => handleLinkClick('contact')}
             variant="primary"
@@ -84,6 +93,83 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           >
             Let’s Talk
           </MagneticButton>
+
+          {/* Social Icons */}
+          <div className="hidden lg:flex items-center gap-2 text-[#777B84]">
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GVX TECH on LinkedIn"
+              className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#0A66C2] hover:bg-[#E8F4FF] hover:shadow-md"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+
+            {/* X */}
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GVX TECH on X"
+              className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-black hover:bg-gray-100 hover:shadow-md"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4l16 16" />
+                <path d="M20 4L4 20" />
+              </svg>
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GVX TECH on Facebook"
+              className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#1877F2] hover:bg-[#EAF3FF] hover:shadow-md"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H8v3h2.1v8h3.4z" />
+              </svg>
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GVX TECH on Instagram"
+              className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#E1306C] hover:bg-[#FFF0F5] hover:shadow-md"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+              </svg>
+            </a>
+
+            {/* YouTube */}
+            <a
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GVX TECH on YouTube"
+              className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#FF0000] hover:bg-[#FFF0F0] hover:shadow-md"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12a31 31 0 0 0-.5-4.8zM9.5 15.5v-7l6 3.5-6 3.5z" />
+              </svg>
+            </a>
+
+          </div>
+
+          {/* Mobile Toggle */}
           <button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -91,7 +177,11 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
-            {mobileOpen ? <X className="w-5 h-5" strokeWidth={1.5} /> : <Menu className="w-5 h-5" strokeWidth={1.5} />}
+            {mobileOpen ? (
+              <X className="w-5 h-5" strokeWidth={1.5} />
+            ) : (
+              <Menu className="w-5 h-5" strokeWidth={1.5} />
+            )}
           </button>
         </div>
       </div>
@@ -102,6 +192,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
           <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
             {NAV_PAGES.map((item) => {
               const isActive = activePage === item.id;
+
               return (
                 <a
                   key={item.id}
@@ -112,13 +203,16 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
                   }}
                   aria-current={isActive ? 'page' : undefined}
                   className={`py-2.5 text-base font-medium transition-colors border-b border-[#E8EBF0]/60 last:border-b-0 ${
-                    isActive ? 'text-[#1677FF]' : 'text-[#101114] hover:text-[#1677FF]'
+                    isActive
+                      ? 'text-[#1677FF]'
+                      : 'text-[#101114] hover:text-[#1677FF]'
                   }`}
                 >
                   {item.label}
                 </a>
               );
             })}
+
             <div className="pt-3">
               <MagneticButton
                 onClick={() => handleLinkClick('contact')}
