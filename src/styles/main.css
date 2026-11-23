@@ -569,3 +569,44 @@ html.has-custom-cursor select {
   backdrop-filter: blur(8px);
 }
 
+/* Smooth ambient background animation */
+
+.ambient-glow {
+  animation: ambientMove 18s ease-in-out infinite alternate;
+}
+
+.ambient-glow-delay {
+  animation: ambientMove 24s ease-in-out infinite alternate-reverse;
+}
+
+.ambient-glow-slow {
+  animation: ambientMoveSlow 30s ease-in-out infinite;
+}
+
+@keyframes ambientMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(80px, 50px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(-40px, -30px) scale(0.95);
+  }
+}
+
+@keyframes ambientMoveSlow {
+  0% {
+    transform: translate(-30px, 20px) scale(1);
+  }
+
+  50% {
+    transform: translate(40px, -40px) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-30px, 20px) scale(1);
+  }
+}

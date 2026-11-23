@@ -1,5 +1,11 @@
 import { useRef, type MouseEvent } from 'react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight,Globe,
+  Layers,
+  Smartphone,
+  TrendingUp,
+  Workflow,Sparkles, Building2, Handshake  } from 'lucide-react';
+  import type { LucideIcon } from 'lucide-react';
+
 import { PROJECTS } from '../data/agencyData';
 import type { PageId } from '../types/navigation';
 import { MagneticButton } from './MagneticButton';
@@ -10,28 +16,28 @@ interface HeroSectionProps {
 }
 
 const HOME_INDEX_CARDS: {
-  num: string;
+  icon: LucideIcon;
   title: string;
   summary: string;
   cta: string;
   target: PageId;
 }[] = [
   {
-    num: '01',
+    icon: Sparkles,
     title: 'What We Create',
     summary: 'Websites, web applications, mobile platforms, SEO, and business automation.',
     cta: 'Explore Services',
     target: 'services',
   },
   {
-    num: '02',
+    icon: Building2,
     title: 'Industry Solutions',
     summary: 'Tailored software architecture for healthcare, hospitality, retail, and SMBs.',
     cta: 'View Solutions',
     target: 'solutions',
   },
   {
-    num: '05',
+    icon: Handshake,
     title: 'Let’s Build Together',
     summary: 'Have an idea, challenge, or business goal? Let’s turn it into a digital solution.',
     cta: 'Start a Project',
@@ -101,44 +107,49 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Hairline Editorial Index Strip */}
-        <div
-          className="stagger-item mt-20 pt-12 border-t border-[#E8EBF0] dark:border-[#262626] grid grid-cols-1 md:grid-cols-3 gap-6"
-          style={{ animationDelay: '200ms' }}
-        >
-          {HOME_INDEX_CARDS.map((item) => (
-            <button
-              key={item.num}
-              type="button"
-              onClick={() => onNavigate(item.target)}
-              onMouseMove={updateSpotlight}
-              className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] p-7 flex flex-col justify-between transition-[border-color,transform,box-shadow,background-color] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(16,17,20,0.04)] dark:hover:bg-[#1A1A1A] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1677FF]"
-            >
-              <div>
-                <span className="font-mono text-xs text-[#1677FF] tabular-nums">
-                  {item.num}
-                </span>
+       {/* Hairline Editorial Index Strip */}
+<div
+  className="stagger-item mt-20 pt-12 border-t border-[#E8EBF0] dark:border-[#262626] grid grid-cols-1 md:grid-cols-3 gap-6"
+  style={{ animationDelay: '200ms' }}
+>
+  {HOME_INDEX_CARDS.map((item) => (
+    <button
+      key={item.title}
+      type="button"
+      onClick={() => onNavigate(item.target)}
+      onMouseMove={updateSpotlight}
+      className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] p-7 flex flex-col justify-between transition-[border-color,transform,box-shadow,background-color] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(16,17,20,0.04)] dark:hover:bg-[#1A1A1A] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1677FF]"
+    >
+      <div>
+        {/* Icon */}
+        <item.icon
+          className="w-7 h-7 text-[#1677FF] transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6"
+          strokeWidth={1.6}
+        />
 
-                <h2 className="mt-3 font-display text-2xl font-semibold tracking-[-0.025em] text-[#101114] dark:text-white group-hover:text-[#1677FF] transition-colors duration-150">
-                  {item.title}
-                </h2>
+        {/* Title */}
+        <h2 className="mt-5 font-display text-xl font-semibold tracking-tight text-[#101114] dark:text-white group-hover:text-[#1677FF] transition-colors duration-200">
+          {item.title}
+        </h2>
 
-                <p className="mt-2.5 text-sm text-[#777B84] dark:text-gray-400 leading-relaxed">
-                  {item.summary}
-                </p>
-              </div>
+        {/* Description */}
+        <p className="mt-3 text-sm font-normal text-[#777B84] dark:text-gray-400 leading-6">
+          {item.summary}
+        </p>
+      </div>
 
-              <span className="mt-6 pt-4 border-t border-[#E8EBF0] dark:border-[#262626] inline-flex items-center justify-between text-xs font-medium text-[#101114] dark:text-white group-hover:text-[#1677FF] transition-colors">
-                <span>{item.cta}</span>
+      {/* CTA */}
+      <span className="mt-6 pt-4 border-t border-[#E8EBF0] dark:border-[#262626] inline-flex items-center justify-between text-xs font-medium text-[#101114] dark:text-white group-hover:text-[#1677FF] transition-colors">
+        <span>{item.cta}</span>
 
-                <ArrowUpRight
-                  className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  strokeWidth={1.75}
-                />
-              </span>
-            </button>
-          ))}
-        </div>
+        <ArrowUpRight
+          className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+          strokeWidth={1.75}
+        />
+      </span>
+    </button>
+  ))}
+</div>
 
         {/* Curated Expertise Preview */}
         <div
@@ -159,94 +170,97 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
 
-            {/* 01 - Website Development */}
-            <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
-              <span className="font-mono text-xs text-[#1677FF]">01</span>
+  {/* 01 - Website Development */}
+  <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
 
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-[#101114] dark:text-white">
-                Website Development
-              </h3>
+    <Globe className="w-7 h-7 text-[#1677FF] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.6} />
 
-              <p className="mt-3 text-sm text-[#777B84] dark:text-gray-400">
-                Beautiful, high-performance websites.
-              </p>
+    <h3 className="mt-5 text-base font-semibold tracking-tight text-[#101114] dark:text-white">
+      Website Development
+    </h3>
 
-              <p className="mt-4 font-mono text-xs leading-6 text-[#101114] dark:text-gray-300">
-                Editorial architecture · Sub-second edge delivery · Accessibility
-              </p>
-            </div>
+    <p className="mt-3 text-sm font-normal leading-6 text-[#777B84] dark:text-gray-400">
+      Beautiful, high-performance websites.
+    </p>
 
-            {/* 02 - Web Applications */}
-            <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
-              <span className="font-mono text-xs text-[#1677FF]">02</span>
+    <p className="mt-4 text-xs font-medium leading-6 tracking-wide text-[#101114]/80 dark:text-gray-300">
+      Editorial architecture · Sub-second edge delivery · Accessibility
+    </p>
+  </div>
 
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-[#101114] dark:text-white">
-                Web Applications
-              </h3>
+  {/* 02 - Web Applications */}
+  <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
 
-              <p className="mt-3 text-sm text-[#777B84] dark:text-gray-400">
-                Intelligent digital platforms for businesses.
-              </p>
+    <Layers className="w-7 h-7 text-[#1677FF] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.6} />
 
-              <p className="mt-4 font-mono text-xs leading-6 text-[#101114] dark:text-gray-300">
-                Real-time dashboards · Role-based portals · API orchestration
-              </p>
-            </div>
+    <h3 className="mt-5 text-base font-semibold tracking-tight text-[#101114] dark:text-white">
+      Web Applications
+    </h3>
 
-            {/* 03 - Mobile Applications */}
-            <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
-              <span className="font-mono text-xs text-[#1677FF]">03</span>
+    <p className="mt-3 text-sm font-normal leading-6 text-[#777B84] dark:text-gray-400">
+      Intelligent digital platforms for businesses.
+    </p>
 
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-[#101114] dark:text-white">
-                Mobile Applications
-              </h3>
+    <p className="mt-4 text-xs font-medium leading-6 tracking-wide text-[#101114]/80 dark:text-gray-300">
+      Real-time dashboards · Role-based portals · API orchestration
+    </p>
+  </div>
 
-              <p className="mt-3 text-sm text-[#777B84] dark:text-gray-400">
-                Powerful mobile experiences.
-              </p>
+  {/* 03 - Mobile Applications */}
+  <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
 
-              <p className="mt-4 font-mono text-xs leading-6 text-[#101114] dark:text-gray-300">
-                iOS & Android · Gesture-first UI · Offline synchronization
-              </p>
-            </div>
+    <Smartphone className="w-7 h-7 text-[#1677FF] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.6} />
 
-            {/* 04 - Digital Marketing & SEO */}
-            <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
-              <span className="font-mono text-xs text-[#1677FF]">04</span>
+    <h3 className="mt-5 text-base font-semibold tracking-tight text-[#101114] dark:text-white">
+      Mobile Applications
+    </h3>
 
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-[#101114] dark:text-white">
-                Digital Marketing & SEO
-              </h3>
+    <p className="mt-3 text-sm font-normal leading-6 text-[#777B84] dark:text-gray-400">
+      Powerful mobile experiences.
+    </p>
 
-              <p className="mt-3 text-sm text-[#777B84] dark:text-gray-400">
-                Grow your digital presence.
-              </p>
+    <p className="mt-4 text-xs font-medium leading-6 tracking-wide text-[#101114]/80 dark:text-gray-300">
+      iOS & Android · Gesture-first UI · Offline synchronization
+    </p>
+  </div>
 
-              <p className="mt-4 font-mono text-xs leading-6 text-[#101114] dark:text-gray-300">
-                Technical SEO · Conversion funnels · Search visibility
-              </p>
-            </div>
+  {/* 04 - Digital Marketing & SEO */}
+  <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
 
-            {/* 05 - Business Automation */}
-            <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
-              <span className="font-mono text-xs text-[#1677FF]">05</span>
+    <TrendingUp className="w-7 h-7 text-[#1677FF] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.6} />
 
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-[#101114] dark:text-white">
-                Business Automation
-              </h3>
+    <h3 className="mt-5 text-base font-semibold tracking-tight text-[#101114] dark:text-white">
+      Digital Marketing & SEO
+    </h3>
 
-              <p className="mt-3 text-sm text-[#777B84] dark:text-gray-400">
-                Smart systems that simplify operations.
-              </p>
+    <p className="mt-3 text-sm font-normal leading-6 text-[#777B84] dark:text-gray-400">
+      Grow your digital presence.
+    </p>
 
-              <p className="mt-4 font-mono text-xs leading-6 text-[#101114] dark:text-gray-300">
-                CRM pipelines · Automated intake · Billing & reports
-              </p>
-            </div>
+    <p className="mt-4 text-xs font-medium leading-6 tracking-wide text-[#101114]/80 dark:text-gray-300">
+      Technical SEO · Conversion funnels · Search visibility
+    </p>
+  </div>
 
-            
+  {/* 05 - Business Automation */}
+  <div className="spotlight-card group text-left rounded-xl border border-[#E8EBF0] bg-white dark:bg-[#111111] dark:border-[#262626] hover:border-[#1677FF]/45 dark:hover:border-[#404040] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,17,20,0.05)] dark:hover:bg-[#1A1A1A] p-6">
 
-          </div>
+    <Workflow className="w-7 h-7 text-[#1677FF] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" strokeWidth={1.6} />
+
+    <h3 className="mt-5 text-base font-semibold tracking-tight text-[#101114] dark:text-white">
+      Business Automation
+    </h3>
+
+    <p className="mt-3 text-sm font-normal leading-6 text-[#777B84] dark:text-gray-400">
+      Smart systems that simplify operations.
+    </p>
+
+    <p className="mt-4 text-xs font-medium leading-6 tracking-wide text-[#101114]/80 dark:text-gray-300">
+      CRM pipelines · Automated intake · Billing & reports
+    </p>
+  </div>
+
+</div>
           
         </div>
         

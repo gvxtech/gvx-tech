@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { AlertCircle, CheckCircle2, Mail, MapPin, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Mail, MapPin, Send, Phone } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
 
 interface ContactSectionProps {
@@ -115,10 +115,99 @@ export function ContactSection({ prefillSubject, onClearPrefill }: ContactSectio
                 <span>hello@gvxtech.io</span>
               </div>
 
+              <div className="flex items-center gap-3 text-sm text-[#101114] dark:text-white">
+  <Phone className="w-4 h-4 text-[#1677FF] shrink-0" strokeWidth={1.6} />
+  <span>++91 81388 37419</span>
+</div>
+
+<div className="flex items-center gap-3 text-sm text-[#101114] dark:text-white">
+  <Phone className="w-4 h-4 text-[#1677FF] shrink-0" strokeWidth={1.6} />
+  <span>+91 73061 23890</span>
+</div>
+
               <div className="flex items-center gap-3 text-sm text-[#777B84] dark:text-gray-400">
                 <MapPin className="w-4 h-4 text-[#1677FF] shrink-0" strokeWidth={1.6} />
-                <span>San Francisco · London · Remote Worldwide</span>
+                <span>India · Kerala · Kochi</span>
               </div>
+
+
+
+{/* Social Icons */}
+<div className="flex items-center gap-2 text-[#777B84] dark:text-gray-400">
+
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="GVX TECH on LinkedIn"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#0A66C2] hover:bg-[#E8F4FF] dark:hover:bg-white/10 hover:shadow-md"
+  >
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  </a>
+
+  {/* X */}
+  <a
+    href="https://x.com"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="GVX TECH on X"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 hover:shadow-md"
+  >
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4l16 16" />
+      <path d="M20 4L4 20" />
+    </svg>
+  </a>
+
+  {/* Facebook */}
+  <a
+    href="https://www.facebook.com"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="GVX TECH on Facebook"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#1877F2] hover:bg-[#EAF3FF] dark:hover:bg-white/10 hover:shadow-md"
+  >
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H8v3h2.1v8h3.4z" />
+    </svg>
+  </a>
+
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="GVX TECH on Instagram"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#E1306C] hover:bg-[#FFF0F5] dark:hover:bg-white/10 hover:shadow-md"
+  >
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+    </svg>
+  </a>
+
+  {/* YouTube */}
+  <a
+    href="https://www.youtube.com"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="GVX TECH on YouTube"
+    className="group p-2 rounded-lg transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 hover:text-[#FF0000] hover:bg-[#FFF0F0] dark:hover:bg-white/10 hover:shadow-md"
+  >
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12a31 31 0 0 0-.5-4.8zM9.5 15.5v-7l6 3.5-6 3.5z" />
+    </svg>
+  </a>
+
+</div>
+
+
             </div>
           </div>
 
