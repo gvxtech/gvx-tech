@@ -12,7 +12,7 @@ const techIcons = [
 
 export default function FloatingTechIcons() {
   return (
-    <section className="relative w-full overflow-hidden border-y border-[#E8EBF0] dark:border-[#262626] bg-white dark:bg-black py-8 transition-colors duration-300">
+    <section className="relative w-full overflow-hidden border-y border-[#E8EBF0] dark:border-[#262626] bg-white dark:bg-black pt-8 pb-8 transition-colors duration-300">
 
       {/* Left Fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white to-transparent dark:from-black" />
@@ -20,6 +20,7 @@ export default function FloatingTechIcons() {
       {/* Right Fade */}
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white to-transparent dark:from-black" />
 
+      {/* Marquee */}
       <div className="tech-marquee flex w-max">
         {[0, 1, 2, 3].map((group) => (
           <div
@@ -30,16 +31,18 @@ export default function FloatingTechIcons() {
             {techIcons.map((tech) => (
               <div
                 key={`${group}-${tech.name}`}
-                className="flex items-center gap-4 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                className="group flex items-center gap-4 opacity-70 grayscale transition-all duration-500 hover:-translate-y-1 hover:scale-110 hover:opacity-100 hover:grayscale-0"
               >
+                {/* Tech Icon */}
                 <img
                   src={tech.src}
                   alt={group === 0 ? tech.name : ''}
-                  className="h-10 w-10 object-contain"
+                  className="h-16 w-16 object-contain transition-transform duration-300 group-hover:rotate-6"
                   loading="lazy"
                 />
 
-                <span className="whitespace-nowrap text-sm font-medium text-[#777B84] dark:text-gray-400">
+                {/* Tech Name */}
+                <span className="whitespace-nowrap text-base font-semibold text-[#777B84] dark:text-gray-400 transition-colors duration-300 group-hover:text-black dark:group-hover:text-white">
                   {tech.name}
                 </span>
               </div>
@@ -47,6 +50,7 @@ export default function FloatingTechIcons() {
           </div>
         ))}
       </div>
+
     </section>
   );
 }

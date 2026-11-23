@@ -58,7 +58,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
     <section
       ref={heroRef}
-      className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-black overflow-hidden transition-colors duration-300"
+      className="relative pt-28 pb-0 lg:pt-36 lg:pb-0 bg-transparent dark:bg-black overflow-hidden transition-colors duration-300"
     >
       <div className="relative z-10 mx-auto max-w-[1240px] px-6 lg:px-10">
 
@@ -265,9 +265,11 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         </div>
         
       </div>
-      <div className="my-8 sm:my-10 md:my-14 lg:my-16">
+      
+      <div className="mt-12 mb-0">
   <FloatingTechIcons />
 </div>
     </section>
+    
   );
 }
