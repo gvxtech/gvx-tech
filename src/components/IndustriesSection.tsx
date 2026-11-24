@@ -1,6 +1,7 @@
 import { useState, type MouseEvent } from 'react';
 import { ArrowUpRight, Building2 } from 'lucide-react';
 import { INDUSTRIES } from '../data/agencyData';
+import SEO from '../seo/SEO';
 
 interface IndustriesSectionProps {
   onExploreContact: (sector: string) => void;
@@ -16,6 +17,13 @@ export function IndustriesSection({ onExploreContact }: IndustriesSectionProps) 
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   return (
+    <>
+    <SEO
+  title="Digital Solutions for Businesses | GVX TECH"
+  description="Discover innovative digital solutions from GVX TECH, helping businesses streamline operations, improve customer experiences and grow through modern technology."
+  url="https://gvxtech.com/solutions/"
+/>
+
     <section className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-black transition-colors duration-300">
       <div className="mx-auto max-w-[1240px] px-6 lg:px-10">
 
@@ -121,5 +129,6 @@ export function IndustriesSection({ onExploreContact }: IndustriesSectionProps) 
 
       </div>
     </section>
+        </>
   );
 }

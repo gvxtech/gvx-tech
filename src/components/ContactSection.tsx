@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { AlertCircle, CheckCircle2, Mail, MapPin, Send, Phone } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
+import SEO from '../seo/SEO';
 
 interface ContactSectionProps {
   prefillSubject?: string | null;
@@ -84,6 +85,13 @@ export function ContactSection({ prefillSubject, onClearPrefill }: ContactSectio
   };
 
   return (
+    <>
+    <SEO
+  title="Contact GVX TECH | Start Your Digital Project"
+  description="Have a digital project in mind? Contact GVX TECH for website development, custom software, mobile applications and digital transformation solutions."
+  url="https://gvxtech.com/contact/"
+/>
+    
     <section className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-black transition-colors duration-300">
       <div className="mx-auto max-w-[1240px] px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -117,7 +125,7 @@ export function ContactSection({ prefillSubject, onClearPrefill }: ContactSectio
 
               <div className="flex items-center gap-3 text-sm text-[#101114] dark:text-white">
   <Phone className="w-4 h-4 text-[#1677FF] shrink-0" strokeWidth={1.6} />
-  <span>++91 81388 37419</span>
+  <span>+91 81388 37419</span>
 </div>
 
 <div className="flex items-center gap-3 text-sm text-[#101114] dark:text-white">
@@ -355,7 +363,7 @@ export function ContactSection({ prefillSubject, onClearPrefill }: ContactSectio
                       name="phone"
                       type="tel"
                       autoComplete="tel"
-                      placeholder="+1 (415) 555-0192"
+                      placeholder="+91 8967843573"
                       value={values.phone}
                       onChange={(e) => {
                         setValues((prev) => ({ ...prev, phone: e.target.value }));
@@ -434,5 +442,6 @@ export function ContactSection({ prefillSubject, onClearPrefill }: ContactSectio
         </div>
       </div>
     </section>
+    </>
   );
 }

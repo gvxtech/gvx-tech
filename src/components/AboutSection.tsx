@@ -2,12 +2,20 @@ import { ArrowRight } from 'lucide-react';
 import { AGENCY_PILLARS } from '../data/agencyData';
 import { MagneticButton } from './MagneticButton';
 import WhyChooseUs from './WhyChooseUs';
+import SEO from '../seo/SEO';
 interface AboutSectionProps {
   onStartProject: () => void;
 }
 
 export function AboutSection({ onStartProject }: AboutSectionProps) {
   return (
+    <>
+    <SEO
+        title="About GVX TECH | Global Digital Technology Company"
+        description="Discover GVX TECH, a digital technology company creating innovative websites, custom software and intelligent digital solutions for businesses worldwide."
+        url="https://gvxtech.com/about/"
+      />
+
     <section className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-black transition-colors duration-300">
       <div className="mx-auto max-w-[1240px] px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -77,5 +85,6 @@ From your first website to a complete business management platform, we turn idea
         <WhyChooseUs />
       </div>
     </section>
+    </>
   );
 }

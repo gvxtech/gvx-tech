@@ -8,6 +8,7 @@ import {
   Workflow,
 } from 'lucide-react';
 import { SERVICES, type ServiceItem } from '../data/agencyData';
+import SEO from '../seo/SEO';
 
 interface ServicesSectionProps {
   onSelectService: (serviceTitle: string) => void;
@@ -41,6 +42,13 @@ function updateSpotlight(e: MouseEvent<HTMLElement>) {
 
 export function ServicesSection({ onSelectService }: ServicesSectionProps) {
   return (
+    <>
+    <SEO
+  title="Our Services | Web Development & Digital Solutions | GVX TECH"
+  description="Explore GVX TECH services, including website development, web applications, mobile apps, custom software, digital marketing and business automation."
+  url="https://gvxtech.com/services/"
+/>
+  
     <section className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-black transition-colors duration-300">
       <div className="mx-auto max-w-[1240px] px-6 lg:px-10">
 
@@ -127,5 +135,6 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
 
       </div>
     </section>
+      </>
   );
 }

@@ -10,6 +10,7 @@ import { PROJECTS } from '../data/agencyData';
 import type { PageId } from '../types/navigation';
 import { MagneticButton } from './MagneticButton';
 import FloatingTechIcons from './FloatingTechIcons';
+import SEO from '../seo/SEO';
 
 interface HeroSectionProps {
   onNavigate: (page: PageId, topic?: string) => void;
@@ -56,6 +57,13 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   const featuredWorks = PROJECTS.slice(0, 2);
 
   return (
+    <>
+    <SEO
+  title="GVX TECH | Web Development & Digital Solutions"
+  description="GVX TECH delivers innovative web development, custom software, mobile apps, digital marketing and business automation solutions for businesses worldwide."
+  url="https://gvxtech.com/"
+/>
+    
     <section
       ref={heroRef}
       className="relative pt-28 pb-0 lg:pt-36 lg:pb-0 bg-transparent dark:bg-black overflow-hidden transition-colors duration-300"
@@ -273,6 +281,6 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   <FloatingTechIcons />
 </div>
     </section>
-    
+    </>
   );
 }
