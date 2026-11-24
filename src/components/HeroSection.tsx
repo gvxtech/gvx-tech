@@ -79,10 +79,13 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               animationDelay: '80ms',
             }}
           >
-            We build the{' '}
-            <span className="gvx-gradient-text italic font-semibold tracking-[-0.035em] pr-1 dark:bg-none dark:text-white dark:[-webkit-text-fill-color:white]">
-              digital future.
-            </span>
+            Your Business {' '}
+            <span className="gvx-gradient-text dark:text-white dark:bg-none">
+                Reimagined for the Digital World
+              </span>
+            {/* <span className="gvx-gradient-text italic font-semibold tracking-[-0.035em] pr-1 dark:bg-none dark:text-white dark:[-webkit-text-fill-color:white]">
+              
+            </span> */}
           </h1>
 
           <div
@@ -90,8 +93,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             style={{ animationDelay: '140ms' }}
           >
             <p className="lg:col-span-7 text-lg sm:text-xl text-[#777B84] dark:text-gray-400 leading-[1.6] max-w-[46ch]">
-              We create intelligent digital experiences, powerful web applications and innovative
-              technology solutions that help businesses grow.
+              We design powerful websites, intelligent web applications and digital solutions that help businesses operate smarter,
+               connect better and grow faster.
             </p>
 
             <div className="lg:col-span-5 flex flex-wrap items-center lg:justify-end gap-4">
@@ -101,7 +104,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               </MagneticButton>
 
               <MagneticButton onClick={() => onNavigate('contact')} variant="secondary" size="md">
-                Start a Project
+                 Let's Build Together
               </MagneticButton>
             </div>
           </div>

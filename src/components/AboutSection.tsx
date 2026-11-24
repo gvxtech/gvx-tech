@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { AGENCY_PILLARS } from '../data/agencyData';
 import { MagneticButton } from './MagneticButton';
-
+import WhyChooseUs from './WhyChooseUs';
 interface AboutSectionProps {
   onStartProject: () => void;
 }
@@ -23,22 +23,19 @@ export function AboutSection({ onStartProject }: AboutSectionProps) {
               className="font-display font-bold tracking-[-0.04em] text-[#101114] dark:text-white leading-[1.04] transition-colors duration-300"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 4.15rem)', textWrap: 'balance' }}
             >
-              We Turn Vision Into{' '}
+              A Technology Partner for {' '}
               <span className="gvx-gradient-text dark:text-white dark:bg-none">
-                Technology.
+                Ambitious Businesses.
               </span>
             </h1>
 
             <p className="mt-7 text-base sm:text-lg text-[#777B84] dark:text-gray-400 leading-[1.7] max-w-[52ch] transition-colors duration-300">
-              GVX TECH is a digital innovation agency dedicated to designing and engineering
-              high-precision websites, custom web and mobile applications, intelligent business
-              automation, and search-driven growth systems.
+              At GVX TECH, we believe every business deserves technology that works smarter.
             </p>
 
             <p className="mt-4 text-base text-[#777B84] dark:text-gray-400 leading-[1.7] max-w-[52ch] transition-colors duration-300">
-              We strip away unnecessary complexity—combining refined typographic interfaces with
-              resilient software engineering so ambitious companies can operate faster, serve
-              customers effortlessly, and scale with confidence.
+              We combine creative design, modern development and intelligent automation to build digital solutions that solve real business challenges.
+From your first website to a complete business management platform, we turn ideas into meaningful digital experiences.
             </p>
 
             <div className="mt-9">
@@ -74,7 +71,10 @@ export function AboutSection({ onStartProject }: AboutSectionProps) {
             ))}
 
           </div>
+
         </div>
+
+        <WhyChooseUs />
       </div>
     </section>
   );
