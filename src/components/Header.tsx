@@ -32,7 +32,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 ${
         scrolled || mobileOpen
           ? 'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-[#E8EBF0] dark:border-white/10'
           : 'bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-transparent'
@@ -103,7 +103,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/gvx-technologies-562062452?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on LinkedIn"
@@ -117,7 +117,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             </a>
 
             {/* X */}
-            <a
+            {/* <a
               href="https://x.com"
               target="_blank"
               rel="noreferrer"
@@ -128,11 +128,11 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
                 <path d="M4 4l16 16" />
                 <path d="M20 4L4 20" />
               </svg>
-            </a>
+            </a> */}
 
             {/* Facebook */}
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/share/1Dw32KYoEW/"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on Facebook"
@@ -145,7 +145,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/gvxtech?lqvp=dTVieHgyNXpjY3c4"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on Instagram"
@@ -160,7 +160,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
 
             {/* YouTube */}
             <a
-              href="https://www.youtube.com"
+              href="https://youtube.com/@gvx-tech?si=-TyyD5-u2ElpiIj8"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on YouTube"

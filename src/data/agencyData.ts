@@ -1,7 +1,7 @@
-import healthcareImg from '../assets/images/industry_healthcare_1795186902978.jpg';
-import hospitalityImg from '../assets/images/industry_hospitality_1795186901890.jpg';
-import retailImg from '../assets/images/industry_retail_1795186902614.jpg';
-import smbImg from '../assets/images/industry_smb_1795186901394.jpg';
+import healthcareImg from '../../public/assets/images/industry_healthcare_1795186902978.jpg';
+import hospitalityImg from '../../public/assets/images/industry_hospitality_1795186901890.jpg';
+import retailImg from '../../public/assets/images/industry_retail_1795186902614.jpg';
+import smbImg from '../../public/assets/images/industry_smb_1795186901394.jpg';
 
 import medflowImg from '../assets/images/project_medflow_portal_1795186901557.jpg';
 import nordicRetailImg from '../assets/images/project_nordic_retail_1795186902514.jpg';

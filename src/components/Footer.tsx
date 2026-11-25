@@ -66,7 +66,7 @@ export function Footer({ onNavigate }: FooterProps) {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/gvx-technologies-562062452?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on LinkedIn"
@@ -89,7 +89,7 @@ export function Footer({ onNavigate }: FooterProps) {
             </a>
 
             {/* X */}
-            <a
+            {/* <a
               href="https://x.com"
               target="_blank"
               rel="noreferrer"
@@ -109,11 +109,11 @@ export function Footer({ onNavigate }: FooterProps) {
                 <path d="M4 4l16 16" />
                 <path d="M20 4L4 20" />
               </svg>
-            </a>
+            </a> */}
 
             {/* Facebook */}
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/share/1Dw32KYoEW/"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on Facebook"
@@ -126,7 +126,7 @@ export function Footer({ onNavigate }: FooterProps) {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/gvxtech?lqvp=dTVieHgyNXpjY3c4"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on Instagram"
@@ -150,7 +150,7 @@ export function Footer({ onNavigate }: FooterProps) {
 
             {/* YouTube */}
             <a
-              href="https://www.youtube.com"
+              href="https://youtube.com/@gvx-tech?si=-TyyD5-u2ElpiIj8"
               target="_blank"
               rel="noreferrer"
               aria-label="GVX TECH on YouTube"

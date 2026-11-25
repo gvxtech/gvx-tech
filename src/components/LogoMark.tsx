@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../assets/images/GVX-logo.png';
+import logo from '../../public/assets/gvx-logo-transparent.png';
 
 interface LogoMarkProps {
   size?: 'header' | 'footer';
@@ -24,7 +24,7 @@ export function LogoMark({ size = 'header', className = '' }: LogoMarkProps) {
       src={logo}
       alt="GVX TECH — Build, Automate, Scale"
       onError={() => setImgError(true)}
-      className={`${heightClass} w-auto object-contain bg-transparent select-none shrink-0 ${className}`}
+      className={`h-10 md:h-12 lg:h-16 w-auto object-contain bg-transparent select-none shrink-0 ${className}`}
       draggable={false}
     />
   );
