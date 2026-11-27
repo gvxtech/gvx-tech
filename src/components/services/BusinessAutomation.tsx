@@ -40,7 +40,7 @@ export default function BusinessAutomation() {
         url="https://gvxtech.com/services/business-automation/"
       />
 
-      <section className="min-h-screen pt-32 pb-20 bg-transparent dark:bg-black">
+      <section className="min-h-screen pt-32 pb-20 bg-transparent dark:bg-transparent">
         <div className="max-w-[1240px] mx-auto px-6 lg:px-10">
 
           <div className="max-w-3xl">

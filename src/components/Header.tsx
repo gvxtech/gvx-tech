@@ -42,7 +42,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
 
         {/* Brand */}
         <a
-          href="#home"
+          href="/"
           onClick={(e) => {
             e.preventDefault();
             handleLinkClick('home');
@@ -64,7 +64,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
             return (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+               href={`/${item.id === 'home' ? '' : item.id}`}
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick(item.id);
@@ -200,7 +200,7 @@ export function Header({ activePage, onNavigate }: HeaderProps) {
               return (
                 <a
                   key={item.id}
-                  href={`#${item.id}`}
+                  href={`/${item.id === 'home' ? '' : item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick(item.id);

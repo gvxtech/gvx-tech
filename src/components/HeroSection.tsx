@@ -66,7 +66,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
     
     <section
       ref={heroRef}
-      className="relative pt-28 pb-0 lg:pt-36 lg:pb-0 bg-transparent dark:bg-black overflow-hidden transition-colors duration-300"
+      className="relative pt-28 pb-0 lg:pt-36 lg:pb-0 bg-transparent dark:bg-transparent overflow-hidden transition-colors duration-300"
     >
       <div className="relative z-10 mx-auto max-w-[1240px] px-6 lg:px-10">
 

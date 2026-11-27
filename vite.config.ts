@@ -2,13 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react(), tailwindcss()],
 
-  base: '/gvx-tech/',
+  // Local: /
+  // Production: /gvx-tech/
+  base: command === 'build' ? '/gvx-tech/' : '/',
 
   server: {
     port: 3000,
     host: '0.0.0.0',
   },
-});
+}));

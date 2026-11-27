@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { NAV_PAGES, type PageId } from './types/navigation';
 
-import { AmbientBackground } from './components/AmbientBackground';
+import { OceanBackground } from './components/OceanBackground';
 import { CustomCursor } from './components/CustomCursor';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
@@ -46,10 +47,21 @@ const VALID_PAGES = new Set<string>([
   ...SERVICE_PAGES,
 ]);
 
-function getInitialPage(): AppPage {
-  const hash = window.location.hash.replace('#', '');
+// --------------------------------------------------
+// GET PAGE FROM URL
+// --------------------------------------------------
 
-  return VALID_PAGES.has(hash) ? (hash as AppPage) : 'home';
+function getPageFromPath(pathname: string): AppPage | null {
+
+  const segments = pathname.split('/').filter(Boolean);
+
+  const currentPath = segments.length
+    ? segments[segments.length - 1]
+    : 'home';
+
+  return VALID_PAGES.has(currentPath)
+    ? (currentPath as AppPage)
+    : null;
 }
 
 // --------------------------------------------------
@@ -58,7 +70,12 @@ function getInitialPage(): AppPage {
 
 export default function App() {
 
-  const [activePage, setActivePage] = useState<AppPage>(getInitialPage);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [activePage, setActivePage] = useState<AppPage>(
+    () => getPageFromPath(location.pathname) ?? 'home'
+  );
 
   const [isLeaving, setIsLeaving] = useState(false);
 
@@ -67,6 +84,37 @@ export default function App() {
   const [prefillSubject, setPrefillSubject] = useState<string | null>(null);
 
   const timerRef = useRef<number | null>(null);
+
+  // --------------------------------------------------
+  // URL CHANGE LISTENER
+  // Handles browser back / forward navigation
+  // --------------------------------------------------
+
+  useEffect(() => {
+
+    const target = getPageFromPath(location.pathname);
+
+    if (!target) {
+      navigate('/', { replace: true });
+      return;
+    }
+
+    if (target !== activePage) {
+
+      setActivePage(target);
+
+      setTransitionKey((key) => key + 1);
+
+    }
+
+    setIsLeaving(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+
+  }, [location.pathname]);
 
   // --------------------------------------------------
   // NAVIGATION FUNCTION
@@ -80,10 +128,12 @@ export default function App() {
       }
 
       if (nextPage === activePage) {
+
         window.scrollTo({
           top: 0,
           behavior: 'smooth',
         });
+
         return;
       }
 
@@ -91,22 +141,17 @@ export default function App() {
         window.clearTimeout(timerRef.current);
       }
 
+      const nextPath = nextPage === 'home'
+        ? '/'
+        : `/${nextPage}`;
+
       const prefersReduced = window.matchMedia(
         '(prefers-reduced-motion: reduce)'
       ).matches;
 
       if (prefersReduced) {
 
-        setActivePage(nextPage);
-
-        setTransitionKey((k) => k + 1);
-
-        window.history.pushState(null, '', `#${nextPage}`);
-
-        window.scrollTo({
-          top: 0,
-          behavior: 'auto',
-        });
+        navigate(nextPath);
 
         return;
       }
@@ -117,62 +162,21 @@ export default function App() {
 
         timerRef.current = null;
 
-        setActivePage(nextPage);
-
-        setTransitionKey((k) => k + 1);
-
-        setIsLeaving(false);
-
-        window.history.pushState(null, '', `#${nextPage}`);
-
-        window.scrollTo({
-          top: 0,
-          behavior: 'auto',
-        });
+        navigate(nextPath);
 
       }, 170);
 
     },
-    [activePage]
+    [activePage, navigate]
   );
 
   // --------------------------------------------------
-  // HASH CHANGE LISTENER
+  // CLEANUP
   // --------------------------------------------------
 
   useEffect(() => {
 
-    const onHashChange = () => {
-
-      const target = window.location.hash.replace('#', '');
-
-      if (VALID_PAGES.has(target) && target !== activePage) {
-
-        if (timerRef.current !== null) {
-          window.clearTimeout(timerRef.current);
-          timerRef.current = null;
-        }
-
-        setIsLeaving(false);
-
-        setActivePage(target as AppPage);
-
-        setTransitionKey((k) => k + 1);
-
-        window.scrollTo({
-          top: 0,
-          behavior: 'auto',
-        });
-
-      }
-
-    };
-
-    window.addEventListener('hashchange', onHashChange);
-
     return () => {
-
-      window.removeEventListener('hashchange', onHashChange);
 
       if (timerRef.current !== null) {
         window.clearTimeout(timerRef.current);
@@ -180,7 +184,7 @@ export default function App() {
 
     };
 
-  }, [activePage]);
+  }, []);
 
   // --------------------------------------------------
   // HEADER ACTIVE PAGE
@@ -198,9 +202,9 @@ export default function App() {
 
   return (
 
-    <div className="relative min-h-screen flex flex-col bg-white text-[#101114]">
+    <div className="relative min-h-screen flex flex-col bg-transparent text-[#101114]">
 
-      <AmbientBackground />
+      <OceanBackground transitionKey={transitionKey} />
 
       <CustomCursor />
 
@@ -245,44 +249,36 @@ export default function App() {
 
         {/* SERVICES */}
 
-       {activePage === 'services' && (
-  <ServicesSection
-    onSelectService={(servicePage) =>
-      navigateTo(servicePage as AppPage)
-    }
-  />
-)}
+        {activePage === 'services' && (
+
+          <ServicesSection
+            onSelectService={(servicePage) =>
+              navigateTo(servicePage as AppPage)
+            }
+          />
+
+        )}
 
         {/* SERVICE DETAILS */}
 
         {activePage === 'website-development' && (
-
           <WebsiteDevelopment />
-
         )}
 
         {activePage === 'web-application-development' && (
-
           <WebApplicationDevelopment />
-
         )}
 
         {activePage === 'mobile-application-development' && (
-
           <MobileApplicationDevelopment />
-
         )}
 
         {activePage === 'seo-digital-marketing' && (
-
           <SEODigitalMarketing />
-
         )}
 
         {activePage === 'business-automation' && (
-
           <BusinessAutomation />
-
         )}
 
         {/* SOLUTIONS */}
@@ -331,4 +327,5 @@ export default function App() {
     </div>
 
   );
+
 }

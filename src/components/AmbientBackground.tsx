@@ -1,10 +1,15 @@
+import { OceanBackground } from './OceanBackground';
+
 export function AmbientBackground() {
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-white dark:bg-black select-none transition-colors duration-500"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none"
       aria-hidden="true"
     >
-      {/* Animated ambient glow */}
+      {/* Original Three.js Ocean */}
+      <OceanBackground />
+
+      {/* Ambient Glow Effects */}
       <div className="absolute inset-0 overflow-hidden">
 
         {/* Glow 1 */}
@@ -15,7 +20,8 @@ export function AmbientBackground() {
             height: '500px',
             top: '-15%',
             left: '-10%',
-            background: 'radial-gradient(circle, rgba(59,130,246,0.10), transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(59,130,246,0.10), transparent 70%)',
           }}
         />
 
@@ -27,7 +33,8 @@ export function AmbientBackground() {
             height: '600px',
             bottom: '-20%',
             right: '-15%',
-            background: 'radial-gradient(circle, rgba(139,92,246,0.10), transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(139,92,246,0.10), transparent 70%)',
           }}
         />
 
@@ -39,13 +46,14 @@ export function AmbientBackground() {
             height: '400px',
             top: '35%',
             left: '45%',
-            background: 'radial-gradient(circle, rgba(6,182,212,0.07), transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(6,182,212,0.07), transparent 70%)',
           }}
         />
 
       </div>
 
-      {/* Subtle background grid */}
+      {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-[0.35] dark:opacity-[0.15]"
         style={{

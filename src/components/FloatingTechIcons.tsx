@@ -14,7 +14,7 @@ const techIcons = [
 ];
 export default function FloatingTechIcons() {
   return (
-    <section className="relative w-full overflow-hidden border-y border-[#E8EBF0] dark:border-[#262626] bg-white dark:bg-black pt-8 pb-8 transition-colors duration-300">
+    <section className="relative w-full overflow-hidden border-y border-[#E8EBF0] dark:border-[#262626] bg-white/80 dark:bg-black/40 backdrop-blur-md pt-8 pb-8 transition-colors duration-300">
 
       {/* Left Fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white to-transparent dark:from-black" />

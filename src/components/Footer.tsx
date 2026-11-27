@@ -7,7 +7,7 @@ interface FooterProps {
 
 export function Footer({ onNavigate }: FooterProps) {
   return (
-    <footer className="relative z-20 bg-white dark:bg-black border-t border-[#E8EBF0] dark:border-white/10 py-14 transition-colors duration-300">
+    <footer className="relative z-20 bg-white/80 dark:bg-black/40 backdrop-blur-md border-t border-[#E8EBF0] dark:border-white/10 py-14 transition-colors duration-300">
       <div className="mx-auto max-w-[1240px] px-6 lg:px-10">
 
         {/* Top Section */}

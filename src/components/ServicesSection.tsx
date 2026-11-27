@@ -90,7 +90,7 @@ export function ServicesSection({
 
       <section
         id="services"
-        className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-black transition-colors duration-300"
+        className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-transparent dark:bg-transparent transition-colors duration-300"
       >
         <div className="mx-auto max-w-[1240px] px-6 lg:px-10">
 
