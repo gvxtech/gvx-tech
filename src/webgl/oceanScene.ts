@@ -56,8 +56,7 @@ function seededRandom(seed: number): number {
 /**
  * Generates a tileable liquid micro-ripple bump texture for capillary wave sparkle
  */
-function createWaterCapillaryMap(maxAnisotropy: number): THREE.DataTexture {
-  const size = 256;
+function createWaterCapillaryMap(maxAnisotropy: number, size = 256): THREE.DataTexture {
   const data = new Uint8Array(size * size * 4);
   const twoPi = Math.PI * 2;
 
@@ -124,6 +123,27 @@ export function initOceanScene(
   const isSoftwareGl = detectSoftwareWebGL();
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Select a rendering profile once at startup. Desktop keeps the original
+  // high-quality settings; mobile and constrained devices use fewer pixels,
+  // vertices and fragment-shader noise octaves.
+  const nav = navigator as Navigator & { deviceMemory?: number };
+  const deviceMemory = nav.deviceMemory ?? 8;
+  const cpuCores = nav.hardwareConcurrency ?? 8;
+  const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const isMobileDevice = window.innerWidth <= 767 || (isCoarsePointer && window.innerWidth <= 1024);
+  const isLowPowerDevice = isSoftwareGl || deviceMemory <= 4 || cpuCores <= 4;
+  const isConstrainedDevice = isMobileDevice || isLowPowerDevice;
+  const targetFps = isConstrainedDevice ? 30 : 60;
+  const oceanSegmentsX = isMobileDevice
+    ? (isLowPowerDevice ? 96 : 128)
+    : (isLowPowerDevice ? 150 : 220);
+  const oceanSegmentsY = isMobileDevice
+    ? (isLowPowerDevice ? 78 : 104)
+    : (isLowPowerDevice ? 122 : 180);
+  const sprayCount = isMobileDevice ? 72 : (isLowPowerDevice ? 100 : 160);
+  const capillaryTextureSize = isMobileDevice ? 128 : 256;
+  const fbmOctaves = isConstrainedDevice ? 2 : 4;
+
   let targetThemeMix = initialTheme === 'dark' ? 1 : 0;
   let currentThemeMix = targetThemeMix;
 
@@ -140,13 +160,15 @@ export function initOceanScene(
   camera.lookAt(0, 0.85, -18);
 
   const renderer = new THREE.WebGLRenderer({
-    antialias: !isSoftwareGl,
-    powerPreference: 'high-performance',
+    antialias: !isSoftwareGl && !isConstrainedDevice,
+    powerPreference: isMobileDevice ? 'default' : 'high-performance',
+    stencil: false,
+    depth: true,
   });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
-  renderer.setPixelRatio(isSoftwareGl ? 1 : Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(isSoftwareGl ? 1 : Math.min(window.devicePixelRatio || 1, isConstrainedDevice ? 1.25 : 2));
   renderer.setSize(width, height);
   renderer.domElement.style.display = 'block';
   renderer.domElement.style.width = '100%';
@@ -156,11 +178,11 @@ export function initOceanScene(
   const maxAnisotropy = renderer.capabilities.getMaxAnisotropy();
 
   const pmremGenerator = new THREE.PMREMGenerator(renderer);
-  const envTex = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+  const envTex = pmremGenerator.fromScene(new RoomEnvironment(), isConstrainedDevice ? 0.07 : 0.04).texture;
   scene.environment = envTex;
   pmremGenerator.dispose();
 
-  const capillaryBump = createWaterCapillaryMap(maxAnisotropy);
+  const capillaryBump = createWaterCapillaryMap(Math.min(maxAnisotropy, isConstrainedDevice ? 4 : 8), capillaryTextureSize);
   const sprayTex = createSoftSprayTexture();
 
   // Outdoor Coastal / Moonlit Ocean Lighting Rig
@@ -255,7 +277,7 @@ export function initOceanScene(
   scene.add(skyDome);
 
   // 1. High-Resolution Multi-Octave Gerstner Ocean Surface (PBR + Fresnel + SSS + Glitter + Lacy Foam)
-  const oceanGeo = new THREE.PlaneGeometry(150, 120, 220, 180);
+  const oceanGeo = new THREE.PlaneGeometry(150, 120, oceanSegmentsX, oceanSegmentsY);
   oceanGeo.rotateX(-Math.PI / 2);
 
   const oceanUniforms = {
@@ -281,11 +303,11 @@ export function initOceanScene(
     color: 0xffffff,
     roughness: 0.07,
     metalness: 0.04,
-    clearcoat: 0.9,
+    clearcoat: isConstrainedDevice ? 0.72 : 0.9,
     clearcoatRoughness: 0.06,
     reflectivity: 0.96,
     bumpMap: capillaryBump,
-    bumpScale: 0.025,
+    bumpScale: isConstrainedDevice ? 0.018 : 0.025,
     envMapIntensity: 0.65,
   });
 
@@ -421,7 +443,7 @@ export function initOceanScene(
         float v = 0.0;
         float amp = 0.5;
         mat2 rot = mat2(0.8, -0.6, 0.6, 0.8);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < ${fbmOctaves}; i++) {
           v += amp * valueNoise(p);
           p = rot * p * 2.05;
           amp *= 0.5;
@@ -517,7 +539,6 @@ export function initOceanScene(
   scene.add(oceanMesh);
 
   // 2. Drifting Sea Spray / Coastal Mist Motes hovering above wave crests
-  const sprayCount = 160;
   const sprayPositions = new Float32Array(sprayCount * 3);
   const sprayMeta = new Float32Array(sprayCount * 3);
   for (let i = 0; i < sprayCount; i++) {
@@ -626,6 +647,8 @@ export function initOceanScene(
   const clock = new THREE.Clock();
   let smoothDelta = 1 / 60;
   let smoothElapsed = 0;
+  let lastFrameTime = 0;
+  const frameInterval = 1000 / targetFps;
 
   const registerTimer = (id: number) => {
     timerId = id;
@@ -741,7 +764,17 @@ export function initOceanScene(
   }
 
   function tick() {
-    if (disposed) return;
+    if (disposed || document.hidden) return;
+
+    // Limit expensive WebGL renders on phones while keeping desktop rendering
+    // at the display's normal animation cadence.
+    const now = performance.now();
+    if (lastFrameTime && now - lastFrameTime < frameInterval - 1) {
+      frameId = requestAnimationFrame(tick);
+      return;
+    }
+    lastFrameTime = now;
+
     const rawDelta = Math.min(clock.getDelta(), 0.05);
     smoothDelta = THREE.MathUtils.lerp(smoothDelta, rawDelta, 0.25);
     smoothElapsed += smoothDelta;
@@ -759,6 +792,24 @@ export function initOceanScene(
       frameId = requestAnimationFrame(tick);
     }
   }
+
+  const onVisibilityChange = () => {
+    if (document.hidden) {
+      cancelAnimationFrame(frameId);
+      clearTimeout(timerId);
+      frameId = 0;
+      timerId = 0;
+      clock.stop();
+      return;
+    }
+
+    // Reset timing after returning to the tab so the first frame does not
+    // receive a large delta and cause a visible jump in the waves.
+    lastFrameTime = 0;
+    clock.start();
+    tick();
+  };
+  document.addEventListener('visibilitychange', onVisibilityChange);
 
   updateOceanScene(0, 0.016);
   tick();
@@ -786,6 +837,7 @@ export function initOceanScene(
       window.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('scroll', onScroll);
       document.removeEventListener('mouseleave', onPointerLeave);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       renderer.domElement.removeEventListener('webglcontextlost', onContextLost);
       renderer.domElement.removeEventListener('webglcontextrestored', onContextRestored);
       skyGeo.dispose();
